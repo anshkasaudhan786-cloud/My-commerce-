@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopOrbit - Online Shopping Site for Mobiles, Electronics, Fashion & More</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        flipkartBlue: '#2874f0',
+                        flipkartYellow: '#ffe11b',
+                        flipkartOrange: '#fb641b',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <!-- Top Navigation Header -->
+    <header class="bg-flipkartBlue sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between gap-4">
+            
+            <!-- Logo & Brand -->
+            <div class="flex items-center gap-1 cursor-pointer">
+                <div>
+                    <span class="text-white font-bold italic text-xl tracking-wider">ShopOrbit</span>
+                    <div class="text-xs text-yellow-300 italic flex items-center gap-1">
+                        Explore <span class="text-white font-semibold">Plus</span> <i class="fa-solid fa-plus text-[10px]"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="flex-1 max-w-2xl relative hidden md:block">
+                <input type="text" placeholder="Search for products, brands and more" class="w-full py-2 pl-4 pr-10 text-sm bg-white rounded-sm focus:outline-none shadow-inner">
+                <button class="absolute right-0 top-0 h-full px-4 text-flipkartBlue bg-white rounded-r-sm hover:bg-gray-50">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </div>
+
+            <!-- Right Actions (Login, Cart, More) -->
+            <div class="flex items-center gap-6 text-white font-medium">
+                <button class="bg-white text-flipkartBlue px-8 py-1 rounded-sm font-semibold shadow hover:bg-gray-100 transition">Login</button>
+                <a href="#" class="hidden sm:inline-block hover:text-yellow-300">Become a Seller</a>
+                <a href="#" class="hidden sm:inline-block hover:text-yellow-300">More <i class="fa-solid fa-angle-down text-xs"></i></a>
+                <a href="#" class="flex items-center gap-2 hover:text-yellow-300">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="hidden sm:inline">Cart</span>
+                    <span id="cart-count" class="bg-red-500 text-white text-xs px-1.5 py-0.5 rounded-full">0</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Mobile Search Bar -->
+        <div class="px-4 pb-2 md:hidden">
+            <div class="relative">
+                <input type="text" placeholder="Search for products, brands and more" class="w-full py-2 pl-4 pr-10 text-sm bg-white rounded-sm focus:outline-none">
+                <button class="absolute right-0 top-0 h-full px-4 text-flipkartBlue">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Categories Strip -->
+    <nav class="bg-white shadow-sm mb-4">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center overflow-x-auto gap-8 text-sm font-semibold text-gray-800 scrollbar-none">
+            <div class="flex flex-col items-center cursor-pointer hover:text-flipkartBlue min-w-[60px]">
+                <img src="https://rukminim1.flixcart.com/flap/128/128/image/21af7159a4d628da.png?q=100" alt="Grocery" class="w-12 h-12 object-contain">
+                <span>Grocery</span>
+            </div>
+            <div class="flex flex-col items-center cursor-pointer hover:text-flipkartBlue min-w-[60px]">
+                <img src="https://rukminim1.flixcart.com/flap/128/128/image/698ba082468ab36p.png?q=100" alt="Mobiles" class="w-12 h-12 object-contain">
+                <span>Mobiles</span>
+            </div>
+            <div class="flex flex-col items-center cursor-pointer hover:text-flipkartBlue min-w-[60px]">
+                <img src="https://rukminim1.flixcart.com/flap/128/128/image/ab7e2b022a4587df.jpg?q=100" alt="Fashion" class="w-12 h-12 object-contain">
+                <span>Fashion</span>
+            </div>
+            <div class="flex flex-col items-center cursor-pointer hover:text-flipkartBlue min-w-[60px]">
+                <img src="https://rukminim1.flixcart.com/flap/128/128/image/0ff199d1bd27eb98.png?q=100" alt="Appliances" class="w-12 h-12 object-contain">
+                <span>Electronics</span>
+            </div>
+            <div class="flex flex-col items-center cursor-pointer hover:text-flipkartBlue min-w-[60px]">
+                <img src="https://rukminim1.flixcart.com/flap/128/128/image/71050627a56b4693.png?q=100" alt="Travel" class="w-12 h-12 object-contain">
+                <span>Home</span>
+            </div>
+            <div class="flex flex-col items-center cursor-pointer hover:text-flipkartBlue min-w-[60px]">
+                <img src="https://rukminim1.flixcart.com/flap/128/128/image/dff3f7adcf3a90c6.png?q=100" alt="Beauty" class="w-12 h-12 object-contain">
+                <span>Beauty</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main class="max-w-7xl mx-auto px-4 space-y-4 pb-12">
+
+        <!-- Hero Banner Carousel Simulation -->
+        <div class="bg-white rounded shadow-sm overflow-hidden relative">
+            <div class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white p-8 md:p-12 flex flex-col md:flex-row items-center justify-between">
+                <div class="space-y-4 max-w-lg text-center md:text-left">
+                    <span class="bg-yellow-400 text-gray-900 text-xs font-bold px-2.5 py-1 rounded">MEGA FESTIVAL SALE</span>
+                    <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">Top Electronics & Gadgets at Unbeatable Prices</h1>
+                    <p class="text-blue-100 text-sm">Grab up to 80% off on premium smartphones, laptops, and smart home appliances.</p>
+                    <button class="bg-yellow-400 text-gray-900 font-bold px-6 py-2.5 rounded shadow hover:bg-yellow-300 transition">Explore Deals</button>
+                </div>
+                <div class="mt-6 md:mt-0">
+                    <img src="https://rukminim1.flixcart.com/fk-p-flap/1600/270/image/aa1b2bdcf519b466.jpg?q=20" alt="Banner" class="rounded shadow-lg max-h-64 object-cover">
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Grid Section -->
+        <section class="bg-white rounded shadow-sm p-4">
+            <div class="flex justify-between items-center border-b pb-3 mb-4">
+                <div>
+                    <h2 class="text-xl font-bold text-gray-800">Best of Electronics</h2>
+                    <p class="text-xs text-gray-500">Based on your interest</p>
+                </div>
+                <button class="bg-flipkartBlue text-white text-xs font-semibold px-4 py-2 rounded shadow hover:bg-blue-600 transition">View All</button>
+            </div>
+
+            <!-- Products Dynamic Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                
+                <!-- Product Card 1 -->
+                <div class="border rounded p-3 flex flex-col justify-between hover:shadow-lg transition group">
+                    <div>
+                        <div class="h-40 flex items-center justify-center overflow-hidden mb-3">
+                            <img src="https://rukminim1.flixcart.com/image/312/312/xif0q/mobile/k/l/l/-original-imagfhu75ga8gyaf.jpeg?q=70" alt="Smartphone" class="h-full object-contain group-hover:scale-105 transition duration-300">
+                        </div>
+                        <h3 class="text-sm font-medium text-gray-800 truncate">Apple iPhone 15 (Black, 128 GB)</h3>
+                        <div class="flex items-center gap-2 mt-1">
+                            <span class="bg-green-700 text-white text-[10px] font-bold px-1.5 py-0.5 rounded flex items-center gap-0.5">4.6 <i class="fa-solid fa-star text-[8px]"></i></span>
+                            <span class="text-xs text-gray-400">(68,230)</span>
+                        </div>
+                        <div class="flex items-center gap-2 mt-2">
+                            <span class="text-base font-bold text-gray-900">₹65,999</span>
+                            <span class="text-xs text-gray-500 line-through">₹79,900</span>
+                            <span class="text-xs font-bold text-green-600">17% off</span>
+                        </div>
+                    </div>
+                    <button onclick="addToCart()" class="mt-4 w-full bg-flipkartYellow hover:bg-yellow-400 text-gray-900 text-xs font-bold py-2 rounded shadow transition">Add to Cart</button>
+                </div>
+
+                <!-- Product Card 2 -->
+                <div class="border rounded p-3 flex flex-col justify-between hover:shadow-lg transition group">
+                    <div>
+                        <div class="h-40 flex items-center justify-center overflow-hidden mb-3">
+                            <img src="https://rukminim1.flixcart.com/image/312/312/xif0q/computer/2/v/0/-original-imah4hzz2v8gy95g.jpeg?q=70" alt="Laptop" class="h-full object-contain group-hover:scale-105 transition duration-300">
+                        </div>
+                        <h3 class="text-sm font-medium text-gray-800 truncate">ASUS Vivobook 15 Thin & Light Laptop</h3>
+                        <div class="flex items-center gap-2 mt-1">
+                            <span class="bg-green-700 text-white text-[10px] font-bold px-1.5 py-0.5 rounded flex items-center gap-0.5">4.3 <i class="fa-solid fa-star text-[8px]"></i></span>
+                            <span class="text-xs text-gray-400">(4,120)</span>
+                        </div>
+                        <div class="flex items-center gap-2 mt-2">
+                            <span class="text-base font-bold text-gray-900">₹45,990</span>
+                            <span class="text-xs text-gray-500 line-through">₹62,990</span>
+                            <span class="text-xs font-bold text-green-600">26% off</span>
+                        </div>
+                    </div>
+                    <button onclick="addToCart()" class="mt-4 w-full bg-flipkartYellow hover:bg-yellow-400 text-gray-900 text-xs font-bold py-2 rounded shadow transition">Add to Cart</button>
+                </div>
+
+                <!-- Product Card 3 -->
+                <div class="border rounded p-3 flex flex-col justify-between hover:shadow-lg transition group">
+                    <div>
+                        <div class="h-40 flex items-center justify-center overflow-hidden mb-3">
+                            <img src="https://rukminim1.flixcart.com/image/612/612/xif0q/headphone/p/r/k/-original-imagzsfgrv3f8dfh.jpeg?q=70" alt="Headphones" class="h-full object-contain group-hover:scale-105 transition duration-300">
+                        </div>
+                        <h3 class="text-sm font-medium text-gray-800 truncate">boAt Rockerz 450 Bluetooth Headset</h3>
+                        <div class="flex items-center gap-2 mt-1">
+                            <span class="bg-green-700 text-white text-[10px] font-bold px-1.5 py-0.5 rounded flex items-center gap-0.5">4.1 <i class="fa-solid fa-star text-[8px]"></i></span>
+                            <span class="text-xs text-gray-400">(92,400)</span>
+                        </div>
+                        <div class="flex items-center gap-2 mt-2">
+                            <span class="text-base font-bold text-gray-900">₹1,499</span>
+                            <span class="text-xs text-gray-500 line-through">₹3,990</span>
+                            <span class="text-xs font-bold text-green-600">62% off</span>
+                        </div>
+                    </div>
+                    <button onclick="addToCart()" class="mt-4 w-full bg-flipkartYellow hover:bg-yellow-400 text-gray-900 text-xs font-bold py-2 rounded shadow transition">Add to Cart</button>
+                </div>
+
+                <!-- Product Card 4 -->
+                <div class="border rounded p-3 flex flex-col justify-between hover:shadow-lg transition group">
+                    <div>
+                        <div class="h-40 flex items-center justify-center overflow-hidden mb-3">
+                            <img src="https://rukminim1.flixcart.com/image/612/612/xif0q/smartwatch/q/q/9/-original-imagsb2a9r6fv79f.jpeg?q=70" alt="Smartwatch" class="h-full object-contain group-hover:scale-105 transition duration-300">
+                        </div>
+                        <h3 class="text-sm font-medium text-gray-800 truncate">Noise ColorFit Pulse Smartwatch</h3>
+                        <div class="flex items-center gap-2 mt-1">
+                            <span class="bg-green-700 text-white text-[10px] font-bold px-1.5 py-0.5 rounded flex items-center gap-0.5">4.0 <i class="fa-solid fa-star text-[8px]"></i></span>
+                            <span class="text-xs text-gray-400">(15,830)</span>
+                        </div>
+                        <div class="flex items-center gap-2 mt-2">
+                            <span class="text-base font-bold text-gray-900">₹1,299</span>
+                            <span class="text-xs text-gray-500 line-through">₹4,999</span>
+                            <span class="text-xs font-bold text-green-600">74% off</span>
+                        </div>
+                    </div>
+                    <button onclick="addToCart()" class="mt-4 w-full bg-flipkartYellow hover:bg-yellow-400 text-gray-900 text-xs font-bold py-2 rounded shadow transition">Add to Cart</button>
+                </div>
+
+                <!-- Product Card 5 -->
+                <div class="border rounded p-3 flex flex-col justify-between hover:shadow-lg transition group">
+                    <div>
+                        <div class="h-40 flex items-center justify-center overflow-hidden mb-3">
+                            <img src="https://rukminim1.flixcart.com/image/312/312/xif0q/television/h/i/n/-original-imah3dghz84qfhgv.jpeg?q=70" alt="TV" class="h-full object-contain group-hover:scale-105 transition duration-300">
+                        </div>
+                        <h3 class="text-sm font-medium text-gray-800 truncate">Mi X Series 43 inch Ultra HD 4K Smart TV</h3>
+                        <div class="flex items-center gap-2 mt-1">
+                            <span class="bg-green-700 text-white text-[10px] font-bold px-1.5 py-0.5 rounded flex items-center gap-0.5">4.4 <i class="fa-solid fa-star text-[8px]"></i></span>
+                            <span class="text-xs text-gray-400">(8,910)</span>
+                        </div>
+                        <div class="flex items-center gap-2 mt-2">
+                            <span class="text-base font-bold text-gray-900">₹24,999</span>
+                            <span class="text-xs text-gray-500 line-through">₹42,999</span>
+                            <span class="text-xs font-bold text-green-600">41% off</span>
+                        </div>
+                    </div>
+                    <button onclick="addToCart()" class="mt-4 w-full bg-flipkartYellow hover:bg-yellow-400 text-gray-900 text-xs font-bold py-2 rounded shadow transition">Add to Cart</button>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 text-xs pt-10 pb-6 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-5 gap-8 pb-8 border-b border-gray-800">
+            <div>
+                <h4 class="text-gray-200 font-semibold mb-3 uppercase tracking-wider">About</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:underline">Contact Us</a></li>
+                    <li><a href="#" class="hover:underline">About Us</a></li>
+                    <li><a href="#" class="hover:underline">Careers</a></li>
+                    <li><a href="#" class="hover:underline">Press</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-gray-200 font-semibold mb-3 uppercase tracking-wider">Help</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:underline">Payments</a></li>
+                    <li><a href="#" class="hover:underline">Shipping</a></li>
+                    <li><a href="#" class="hover:underline">Cancellation & Returns</a></li>
+                    <li><a href="#" class="hover:underline">FAQ</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-gray-200 font-semibold mb-3 uppercase tracking-wider">Policy</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:underline">Return Policy</a></li>
+                    <li><a href="#" class="hover:underline">Terms Of Use</a></li>
+                    <li><a href="#" class="hover:underline">Security</a></li>
+                    <li><a href="#" class="hover:underline">Privacy</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-gray-200 font-semibold mb-3 uppercase tracking-wider">Social</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:underline">Facebook</a></li>
+                    <li><a href="#" class="hover:underline">Twitter</a></li>
+                    <li><a href="#" class="hover:underline">YouTube</a></li>
+                </ul>
+            </div>
+            <div class="col-span-2 md:col-span-1 border-l border-gray-800 pl-4">
+                <h4 class="text-gray-200 font-semibold mb-3 uppercase tracking-wider">Registered Office Address:</h4>
+                <p class="leading-relaxed">ShopOrbit Internet Private Limited,<br>Buildings Alyssa, Begonia &<br>Clove Embassy Tech Village,<br>Outer Ring Road, Devarabeesanahalli Village,<br>Bengaluru, 560103, Karnataka, India</p>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 pt-6 flex flex-col sm:flex-row items-center justify-between text-gray-500">
+            <p>&copy; 2026 ShopOrbit.com. All rights reserved.</p>
+            <div class="flex gap-4 mt-4 sm:mt-0">
+                <span><i class="fa-solid fa-shield-halved text-yellow-400"></i> 100% Secure Payments</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive JS Script -->
+    <script>
+        let cartCount = 0;
+        function addToCart() {
+            cartCount++;
+            document.getElementById('cart-count').innerText = cartCount;
+            alert("Product successfully added to your Cart!");
+        }
+    </script>
+</body>
+                  </html>
+  
